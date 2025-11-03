@@ -4,8 +4,8 @@ import Movie from "@/models/Movie";
 
 /**
  * API Route: /api/movies
- * GET - Fetch all movies from database
- * Query params: category (optional) - filter by hollywood or bollywood
+ * GET - Fetch all series from database
+ * Query params: category (optional) - filter by category (e.g., "series")
  */
 export async function GET(request: NextRequest) {
   try {
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
       query = { category: category.toLowerCase() };
     }
 
-    // Fetch movies sorted by rating (most rated first)
+    // Fetch series sorted by rating (most rated first)
     const movies = await Movie.find(query).sort({ rating: -1 }).lean();
 
     return NextResponse.json(
@@ -32,9 +32,9 @@ export async function GET(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error fetching movies:", error);
+    console.error("Error fetching series:", error);
     return NextResponse.json(
-      { error: "Failed to fetch movies" },
+      { error: "Failed to fetch series" },
       { status: 500 }
     );
   }

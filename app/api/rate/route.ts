@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Movie from "@/models/Movie";
+import { getSeriesMeme } from "@/lib/seriesMemes";
 
 /**
  * API Route: /api/rate
- * POST - Handle Rate or Hate action for a movie
+ * POST - Handle Rate or Hate action for a series
  * Body: { movieId: string, userId: string, action: "rate" | "hate" }
  */
 export async function POST(request: NextRequest) {
@@ -29,12 +30,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find the movie
+    // Find the series
     const movie = await Movie.findById(movieId);
 
     if (!movie) {
       return NextResponse.json(
-        { error: "Movie not found" },
+        { error: "Series not found" },
         { status: 404 }
       );
     }
@@ -42,12 +43,12 @@ export async function POST(request: NextRequest) {
     // Check if user has already voted
     if (movie.ratedBy.includes(userId)) {
       return NextResponse.json(
-        { error: "You have already voted for this movie!" },
+        { error: "You have already voted for this series!" },
         { status: 400 }
       );
     }
 
-    // Update the movie based on action
+    // Update the series based on action
     if (action === "rate") {
       movie.rating += 1;
     } else {
@@ -57,24 +58,28 @@ export async function POST(request: NextRequest) {
     // Add userId to ratedBy array
     movie.ratedBy.push(userId);
 
-    // Save the updated movie
+    // Save the updated series
     await movie.save();
+
+    // Get series-specific meme or fallback to generic
+    const meme = getSeriesMeme(movie.seriesId, action);
 
     return NextResponse.json(
       {
         success: true,
-        message: `Movie ${action}d successfully!`,
+        message: `Series ${action}d successfully!`,
         movie: {
           _id: movie._id,
           title: movie.title,
           rating: movie.rating,
           hate: movie.hate,
         },
+        meme,
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error rating movie:", error);
+    console.error("Error rating series:", error);
     return NextResponse.json(
       { error: "Failed to process vote" },
       { status: 500 }

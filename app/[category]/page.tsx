@@ -5,25 +5,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { generateUserId } from "@/lib/utils";
-import { getRandomMeme } from "@/lib/memes";
-
-interface Movie {
-  _id: string;
-  tmdbId: string;
-  title: string;
-  imageUrl: string;
-  category: string;
-  rating: number;
-  hate: number;
-  ratedBy: string[];
-}
+import ShareButtons from "@/components/ShareButtons";
+import Button from "@/components/Button";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import ErrorState from "@/components/ErrorState";
+import MemeOverlay from "@/components/MemeOverlay";
+import VoteStats from "@/components/VoteStats";
+import EmailLink from "@/components/EmailLink";
+import SocialLinks from "@/components/SocialLinks";
+import { Movie, Meme } from "@/types";
 
 export default function CategoryPage() {
   const params = useParams();
   const router = useRouter();
   const category = params.category as string;
-  const categoryName =
-    category.charAt(0).toUpperCase() + category.slice(1);
+  const categoryName = category === "series" ? "TV Series" : category.charAt(0).toUpperCase() + category.slice(1);
 
   const [movies, setMovies] = useState<Movie[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,43 +28,39 @@ export default function CategoryPage() {
   const [error, setError] = useState("");
   const [isVoting, setIsVoting] = useState(false);
   const [showMeme, setShowMeme] = useState(false);
-  const [currentMeme, setCurrentMeme] = useState<{ gif: string; text: string }>({ gif: "", text: "" });
+  const [currentMeme, setCurrentMeme] = useState<Meme>({ gif: "", text: "" });
 
   useEffect(() => {
     const id = generateUserId();
     setUserId(id);
+    
+    const fetchMovies = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`/api/movies?category=${category}`);
+        const data = await response.json();
+
+        if (data.success) {
+          setMovies(data.movies);
+        } else {
+          setError("Failed to load series");
+        }
+      } catch (err) {
+        console.error("Error fetching series:", err);
+        setError("Failed to load series. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchMovies();
   }, [category]);
-
-  const fetchMovies = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`/api/movies?category=${category}`);
-      const data = await response.json();
-
-      if (data.success) {
-        setMovies(data.movies);
-      } else {
-        setError("Failed to load movies");
-      }
-    } catch (err) {
-      console.error("Error fetching movies:", err);
-      setError("Failed to load movies. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleVote = async (action: "rate" | "hate") => {
     if (isVoting || !currentMovie) return;
 
     try {
       setIsVoting(true);
-      
-      // Show random meme
-      const meme = getRandomMeme(action);
-      setCurrentMeme(meme);
-      setShowMeme(true);
       
       const response = await fetch("/api/rate", {
         method: "POST",
@@ -85,6 +77,12 @@ export default function CategoryPage() {
       const data = await response.json();
 
       if (data.success) {
+        // Show series-specific meme from API response
+        if (data.meme) {
+          setCurrentMeme(data.meme);
+          setShowMeme(true);
+        }
+
         // Update the current movie in state
         setMovies((prevMovies) =>
           prevMovies.map((movie) =>
@@ -121,92 +119,108 @@ export default function CategoryPage() {
     }
   };
 
+  const handleSkip = () => {
+    if (isVoting) return;
+    
+    // Move to next series without voting
+    if (currentIndex < movies.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+  };
+
   const currentMovie = movies[currentIndex];
   const hasVoted = currentMovie?.ratedBy.includes(userId);
 
+  // Add structured data for current series
+  useEffect(() => {
+    if (currentMovie && typeof window !== 'undefined') {
+      const seriesJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "TVSeries",
+        "name": currentMovie.title,
+        "image": currentMovie.imageUrl,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": currentMovie.rating > currentMovie.hate ? "4.5" : "2.5",
+          "ratingCount": currentMovie.rating + currentMovie.hate,
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "interactionStatistic": [
+          {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/LikeAction",
+            "userInteractionCount": currentMovie.rating
+          },
+          {
+            "@type": "InteractionCounter",
+            "interactionType": "https://schema.org/DislikeAction",
+            "userInteractionCount": currentMovie.hate
+          }
+        ],
+        "genre": "TV Series",
+        "url": `https://rate-it-or-hate-it.vercel.app/${category}`
+      };
+
+      // Remove existing script if present
+      const existingScript = document.getElementById('series-jsonld');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      // Add new script
+      const script = document.createElement('script');
+      script.id = 'series-jsonld';
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(seriesJsonLd);
+      document.head.appendChild(script);
+
+      return () => {
+        const scriptToRemove = document.getElementById('series-jsonld');
+        if (scriptToRemove) {
+          scriptToRemove.remove();
+        }
+      };
+    }
+  }, [currentMovie, category]);
+
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-950">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-400 text-lg">Loading movies...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner text="Loading series..." />;
   }
 
   if (error || movies.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
-        <div className="text-center">
-          <p className="text-gray-400 text-xl mb-4">
-            {error || "No movies found for this category!"}
-          </p>
-          <p className="text-gray-500 text-sm mb-6">
-            Visit <code className="bg-gray-800 px-2 py-1 rounded">/api/setup</code> to seed the database.
-          </p>
-          <button
-            onClick={() => router.push("/")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold"
-          >
-            Go Back Home
-          </button>
-        </div>
-      </div>
+      <ErrorState
+        title={error || "No series available at the moment"}
+        message="Please check back later or try refreshing the page."
+        actionLabel="Go Back Home"
+        onAction={() => router.push("/")}
+      />
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex flex-col">
+    <div className="min-h-screen bg-gray-950 flex flex-col overflow-hidden">
       {/* Meme Overlay */}
-      <AnimatePresence>
-        {showMeme && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0, rotate: 180 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="w-full max-w-lg mx-4 text-center"
-            >
-              <img
-                src={currentMeme.gif}
-                alt="Reaction meme"
-                className="w-full h-auto rounded-2xl shadow-2xl mb-6"
-              />
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-2xl md:text-3xl font-bold bg-linear-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent px-4"
-              >
-                {currentMeme.text}
-              </motion.p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <MemeOverlay show={showMeme} meme={currentMeme} />
 
-      {/* Header */}
-      <div className="text-center py-8">
+      {/* Header - Compact */}
+      <div className="text-center py-4 shrink-0">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold text-white"
+          className="text-3xl md:text-5xl font-bold text-white"
         >
           🎬 Rate It or Hate It
         </motion.h1>
-        <p className="text-gray-400 text-lg mt-2">{categoryName} Movies</p>
+        <p className="text-gray-400 text-base mt-1">{categoryName}</p>
       </div>
 
       {/* Main Content - Centered Movie */}
-      <div className="flex-1 flex items-center justify-center px-4 pb-12">
-        <div className="w-full max-w-2xl">
+      <div className="flex-1 flex items-center justify-center px-4 overflow-y-auto">
+        <div className="w-full max-w-2xl py-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentMovie._id}
@@ -216,46 +230,33 @@ export default function CategoryPage() {
               transition={{ duration: 0.3 }}
               className="flex flex-col items-center"
             >
-              {/* Movie Image */}
-              <div className="relative w-full max-w-md aspect-2/3 rounded-xl overflow-hidden shadow-2xl mb-8">
+              {/* Series Banner - Smaller */}
+              <div className="relative w-full max-w-xs aspect-2/3 rounded-xl overflow-hidden shadow-2xl mb-4">
                 <Image
                   src={currentMovie.imageUrl}
                   alt={currentMovie.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 500px"
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover"
                   priority
                 />
               </div>
 
-              {/* Movie Title */}
-              <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-6">
+              {/* Series Title - Compact */}
+              <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-3">
                 {currentMovie.title}
               </h2>
 
               {/* Rating Counts */}
-              <div className="flex gap-8 mb-8">
-                <div className="text-center">
-                  <p className="text-gray-400 text-sm mb-1">Rating</p>
-                  <p className="text-3xl font-bold text-green-500">
-                    {currentMovie.rating}
-                  </p>
-                </div>
-                <div className="text-center">
-                  <p className="text-gray-400 text-sm mb-1">Hating</p>
-                  <p className="text-3xl font-bold text-red-500">
-                    {currentMovie.hate}
-                  </p>
-                </div>
-              </div>
+              <VoteStats rating={currentMovie.rating} hate={currentMovie.hate} />
 
               {/* Vote Buttons */}
               {hasVoted ? (
                 <div className="text-center">
-                  <p className="text-gray-400 text-lg mb-4">
-                    You&apos;ve already voted for this movie!
+                  <p className="text-gray-400 text-base mb-3">
+                    You&apos;ve already voted for this series!
                   </p>
-                  <button
+                  <Button
                     onClick={() => {
                       if (currentIndex < movies.length - 1) {
                         setCurrentIndex(currentIndex + 1);
@@ -263,54 +264,92 @@ export default function CategoryPage() {
                         setCurrentIndex(0);
                       }
                     }}
-                    className="bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold"
+                    variant="secondary"
+                    size="lg"
                   >
-                    Next Movie →
-                  </button>
+                    Next Series →
+                  </Button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-xl">
-                  {/* Rate Me Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleVote("rate")}
-                    disabled={isVoting}
-                    className="bg-green-600 hover:bg-green-700 text-white px-12 py-6 rounded-xl font-bold text-2xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    👍 Rate Me
-                  </motion.button>
+                <div className="space-y-3 w-full max-w-xl">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Rate Me Button */}
+                    <Button
+                      onClick={() => handleVote("rate")}
+                      disabled={isVoting}
+                      variant="success"
+                      size="xl"
+                      animated
+                    >
+                      👍 Rate Me
+                    </Button>
 
-                  {/* Hate Me Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleVote("hate")}
+                    {/* Hate Me Button */}
+                    <Button
+                      onClick={() => handleVote("hate")}
+                      disabled={isVoting}
+                      variant="danger"
+                      size="xl"
+                      animated
+                    >
+                      👎 Hate Me
+                    </Button>
+                  </div>
+
+                  {/* Skip Button */}
+                  <Button
+                    onClick={handleSkip}
                     disabled={isVoting}
-                    className="bg-red-600 hover:bg-red-700 text-white px-12 py-6 rounded-xl font-bold text-2xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    variant="secondary"
+                    size="lg"
+                    animated
+                    className="w-full text-gray-300"
                   >
-                    👎 Hate Me
-                  </motion.button>
+                    ⏭️ Skip - Haven&apos;t Watched
+                  </Button>
                 </div>
               )}
 
               {/* Progress Indicator */}
-              <p className="text-gray-500 text-sm mt-8">
-                Movie {currentIndex + 1} of {movies.length}
+              <p className="text-gray-500 text-sm mt-4">
+                Series {currentIndex + 1} of {movies.length}
               </p>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Back Button */}
-      <div className="text-center pb-8">
-        <button
-          onClick={() => router.push("/")}
-          className="text-gray-400 hover:text-white transition-colors"
-        >
-          ← Back to Categories
-        </button>
+      {/* Share Buttons & Back Button - Compact */}
+      <div className="text-center py-3 shrink-0 space-y-2 border-t border-gray-800">
+        <div className="flex justify-center">
+          <ShareButtons title="Check out Rate It or Hate It!" />
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center text-sm">
+          <Button
+            onClick={() => router.push("/")}
+            variant="ghost"
+            size="sm"
+            className="font-normal"
+          >
+            ← Back to Home
+          </Button>
+
+          <EmailLink
+            email="mrnaseem745@gmail.com"
+            subject="Series Request for Rate It or Hate It"
+            body={`Hi,\n\nI would like to request the following series to be added:\n\nSeries Name: [Enter series name here]\n\nThank you!`}
+            className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-2"
+          >
+            <span>📺</span>
+            Request a Series
+          </EmailLink>
+        </div>
+
+        {/* Social Media Links */}
+        <div className="pt-2">
+          <SocialLinks className="justify-center" iconSize="md" />
+        </div>
       </div>
     </div>
   );

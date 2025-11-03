@@ -8,7 +8,7 @@ declare global {
   };
 }
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -17,9 +17,8 @@ if (!MONGODB_URI) {
 }
 
 /**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
+ * Global cache maintains a single connection across hot reloads in development
+ * Prevents connection pool exhaustion during API route calls
  */
 let cached = global.mongoose;
 
@@ -37,7 +36,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts);
+    cached.promise = mongoose.connect(MONGODB_URI!, opts);
   }
 
   try {
