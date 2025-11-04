@@ -98,6 +98,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_KEY;
+  
   // JSON-LD Structured Data for Schema.org
   const jsonLd = {
     "@context": "https://schema.org",
@@ -140,6 +142,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics */}
+        {gaId && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <script
+              id="google-analytics"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
