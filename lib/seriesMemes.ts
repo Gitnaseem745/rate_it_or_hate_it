@@ -7,148 +7,210 @@ export const seriesMemes: SeriesMeme[] = [
     id: "s1",
     name: "Dark",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnJ4M29nMml0dnkwcmQ0bWRiN2dtZXdoeThveXNycmU2aGZhYjk2NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/dYfBdBGvCuPWBp759y/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnJ4M29nMml0dnkwcmQ0bWRiN2dtZXdoeThveXNycmU2aGZhYjk2NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3ohs81iyx43AEB394I/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnJ4M29nMml0dnkwcmQ0bWRiN2dtZXdoeThveXNycmU2aGZhYjk2NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3ohs80N543Ccmt68x2/giphy.gif"
+      "/memes/hate/hate-1.gif",
+      "/memes/hate/hate-2.gif",
+      "/memes/hate/hate-3.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnJ4M29nMml0dnkwcmQ0bWRiN2dtZXdoeThveXNycmU2aGZhYjk2NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUOxfbQ47hDoRLeZji/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnJ4M29nMml0dnkwcmQ0bWRiN2dtZXdoeThveXNycmU2aGZhYjk2NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/j0pVehV4mRbxYv3PbP/giphy.gif"
+      "/memes/rate/rate-1.gif",
+      "/memes/rate/rate-2.gif"
     ]
   },
   {
     id: "s2",
     name: "Game of Thrones",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExazFocThhczRmdmdvYmpoYTA5dW12b2QzZDAydG85YzhlN3g5N2RuNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xTcnTehwgRcbgymhTW/giphy.gif"
+      "/memes/hate/hate-4.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWwzM3poNWcwOWJuOHdkb2lwcWtzOHNjem52eHZteGs5bnBjeGJ4bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fmd46gcrNQJePMU6xa/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWwzM3poNWcwOWJuOHdkb2lwcWtzOHNjem52eHZteGs5bnBjeGJ4bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qCJQuCrgbec7u/giphy.gif"
+      "/memes/rate/rate-3.gif",
+      "/memes/rate/rate-4.gif"
     ]
   },
   {
     id: "s3",
     name: "Breaking Bad",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24xYzVxZnMzMWU2dGh2Y3EwMTdzYWFuanN3cTBlMGY5eHk1bDA1OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/h4y0sg9fCZKHkExyG2/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24xYzVxZnMzMWU2dGh2Y3EwMTdzYWFuanN3cTBlMGY5eHk1bDA1OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TP9fAOi5StGsU/giphy.gif"
+      "/memes/hate/hate-5.gif",
+      "/memes/hate/hate-6.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24xYzVxZnMzMWU2dGh2Y3EwMTdzYWFuanN3cTBlMGY5eHk1bDA1OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/1nCfZ1mDXGcyk/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24xYzVxZnMzMWU2dGh2Y3EwMTdzYWFuanN3cTBlMGY5eHk1bDA1OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/iowmvjVUnDFGU/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24xYzVxZnMzMWU2dGh2Y3EwMTdzYWFuanN3cTBlMGY5eHk1bDA1OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yE72eDy7lj3JS/giphy.gif"
+      "/memes/rate/rate-5.gif",
+      "/memes/rate/rate-6.gif",
+      "/memes/rate/rate-7.gif"
     ]
   },
   {
     id: "s4",
     name: "Hannibal",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDh6cmtydXNpN3QzOWhyMXdoMjY0dHNzaXViZTNsengwN2N0NWpjZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ExaDyHeNWx2iA/giphy.gif"
+      "/memes/hate/hate-7.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDh6cmtydXNpN3QzOWhyMXdoMjY0dHNzaXViZTNsengwN2N0NWpjZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Y42w4LXdFeI6s/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDh6cmtydXNpN3QzOWhyMXdoMjY0dHNzaXViZTNsengwN2N0NWpjZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/rTb3Q9F3wKQCc/giphy.gif"
+      "/memes/rate/rate-8.gif",
+      "/memes/rate/rate-9.gif"
     ]
   },
   {
     id: "s5",
     name: "From",
     hateMemes: [
-        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHBseTRqdms3YW10Ymh6cWdoNTNkMmloOXNxZ2M4eGRjYm9iY2toaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WmtTa52BN4zTdDdyV7/giphy.gif",
+        "/memes/hate/hate-8.gif",
     ],
     rateMemes: [
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHhieTFqMnppN2Jxa2Fkd293bnhmdDVrc2VtbDZoemxzc2lybWh5NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/98MaHVwJOmWMz4cz1K/giphy.gif",
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmh0MjM5NHRsd2l2NnNhajh0bmpuajlqN2Jrd3FnejNkNmR6bDJqcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/hRYXatty4dJks/giphy.gif"
+        "/memes/rate/rate-10.gif",
+        "/memes/rate/rate-11.gif"
     ]
   },
   {
     id: "s6",
     name: "Wednesday",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTlmZjhyN3Blc2MzMmwzcW5sdnU3NDBuOXhpYTZ1c3Rxb2podTB5byZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TU76e2JHkPchG/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHhieTFqMnppN2Jxa2Fkd293bnhmdDVrc2VtbDZoemxzc2lybWh5NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OPU6wzx8JrHna/giphy.gif"
+      "/memes/hate/hate-9.gif",
+      "/memes/hate/hate-10.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExczFxZGt1Y2h3bGExNHlxbGRnaTBxdzFubDlqZ2V3cDNzcGg1bWwxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26u4cqiYI30juCOGY/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGJyNXlrYjd0YThtcjJ6ZzB3bjI3YmJqdTNyYW45Y2YxYmhsMnFsNSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6Zt6KHxJTbXCnSvu/giphy.gif"
+      "/memes/rate/rate-12.gif",
+      "/memes/rate/rate-13.gif"
     ]
   },
   {
     id: "s7",
     name: "Stranger Things",
     hateMemes: [
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG53bHlmNTBqNXV2Y2Q0eGVlNjA2dTBra214NnNvdGM5dWV2c3phYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ZXqOCQLK8BKquLx56V/giphy.gif",
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG53bHlmNTBqNXV2Y2Q0eGVlNjA2dTBra214NnNvdGM5dWV2c3phYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/axdUGyhEPyZ2hwMtaa/giphy.gif",
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG53bHlmNTBqNXV2Y2Q0eGVlNjA2dTBra214NnNvdGM5dWV2c3phYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/iO4ptP2iuV29yui3mx/giphy.gif"
+        "/memes/hate/hate-11.gif",
+        "/memes/hate/hate-12.gif",
+        "/memes/hate/hate-13.gif"
     ],
     rateMemes: [
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG53bHlmNTBqNXV2Y2Q0eGVlNjA2dTBra214NnNvdGM5dWV2c3phYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l378fCBfWv5TnkSTC/giphy.gif",
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG53bHlmNTBqNXV2Y2Q0eGVlNjA2dTBra214NnNvdGM5dWV2c3phYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WSsUgLins3y2Q/giphy.gif"
+        "/memes/rate/rate-14.gif",
+        "/memes/rate/rate-15.gif"
     ]
   },
   {
     id: "s8",
     name: "Mr. Robot",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG1mdzI5d3VubmhwcW1pM3c0OGl0aTZodDk0N29zcHVyanN4Nm00NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/8hY1xmC9NIoDu/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG1mdzI5d3VubmhwcW1pM3c0OGl0aTZodDk0N29zcHVyanN4Nm00NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/8fRwPZtbWkkX6/giphy.gif"
+      "/memes/hate/hate-14.gif",
+      "/memes/hate/hate-15.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG1mdzI5d3VubmhwcW1pM3c0OGl0aTZodDk0N29zcHVyanN4Nm00NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/BlWF2vzpIPB0A/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG1mdzI5d3VubmhwcW1pM3c0OGl0aTZodDk0N29zcHVyanN4Nm00NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WiM5K1e9MtEic/giphy.gif"
+      "/memes/rate/rate-16.gif",
+      "/memes/rate/rate-17.gif"
     ]
   },
   {
     id: "s9",
     name: "True Detective",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2QzdDFnc3J6YXJ3dnF2ZGN3ejQwZzE0MHZ6bmoxMnRibnYwdnQ0MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Zqe1S3qNQxsuQ/giphy.gif"
+      "/memes/hate/hate-16.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2QzdDFnc3J6YXJ3dnF2ZGN3ejQwZzE0MHZ6bmoxMnRibnYwdnQ0MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/6s3HtZfGOaqUU/giphy.gif"
+      "/memes/rate/rate-18.gif"
     ]
   },
   {
     id: "s10",
     name: "Better Call Saul",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTdmcnFieGpya3BucWd3NGZlamhhMzh2ajQxYTB5dzNkcHJqdDF1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/frdn0r0hUXDTa/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTdmcnFieGpya3BucWd3NGZlamhhMzh2ajQxYTB5dzNkcHJqdDF1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/avx8Ba7NoFz3g8pFIF/giphy.gif"
+      "/memes/hate/hate-17.gif",
+      "/memes/hate/hate-18.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTdmcnFieGpya3BucWd3NGZlamhhMzh2ajQxYTB5dzNkcHJqdDF1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/40dEau6bZRO3S/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTdmcnFieGpya3BucWd3NGZlamhhMzh2ajQxYTB5dzNkcHJqdDF1ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0EwYGlvQ7STj3wyc/giphy.gif"
+      "/memes/rate/rate-19.gif",
+      "/memes/rate/rate-20.gif"
     ]
   },
   {
     id: "s11",
     name: "Lost",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTlmZjhyN3Blc2MzMmwzcW5sdnU3NDBuOXhpYTZ1c3Rxb2podTB5byZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ckGndVa23sCk9pae4l/giphy.gif"
+      "/memes/hate/hate-19.gif"
     ],
     rateMemes: [
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDR3YzA3ZGw5NXFpdXprY2F6dzc5eDJ6cWJ3eWhkNGljZzNhMGkwMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yJFeycRK2DB4c/giphy.gif",
-        "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXN5d2JrbTN3aGU4OGt5Y3Y5NzRnY3Z4ZWczZHZwYWN5NjFxeGVxdSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/XreQmk7ETCak0/giphy.gif"
+        "/memes/rate/rate-21.gif",
+        "/memes/rate/rate-22.gif"
     ]
   },
   {
     id: "s12",
     name: "You",
     hateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWRkd3JvczRzbDMxMWZoajVuaW1uZnl5dWVzcm5zaG1vdnUzOTlpcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fUkdOIrtQdyGbpZZKu/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWRkd3JvczRzbDMxMWZoajVuaW1uZnl5dWVzcm5zaG1vdnUzOTlpcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/TFINQhNNBhM58cckE9/giphy.gif"
+      "/memes/hate/hate-20.gif",
+      "/memes/hate/hate-21.gif"
     ],
     rateMemes: [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWRkd3JvczRzbDMxMWZoajVuaW1uZnl5dWVzcm5zaG1vdnUzOTlpcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/28I5KEqbxUEafaeNtV/giphy.gif",
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWRkd3JvczRzbDMxMWZoajVuaW1uZnl5dWVzcm5zaG1vdnUzOTlpcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kfLjUwkUZgdZOIv5hf/giphy.gif"
+      "/memes/rate/rate-23.gif",
+      "/memes/rate/rate-24.gif"
     ]
   }
 ];
 
+// History tracking to prevent immediate repetition
+const recentMemes: Map<string, string[]> = new Map();
+const recentTexts: Map<string, string[]> = new Map();
+const MAX_HISTORY = 3; // Remember last 3 selections
+
+/**
+ * Get a truly random item from array while avoiding recent history
+ * Uses crypto.getRandomValues for better randomness
+ */
+function getRandomWithHistory<T>(
+  items: T[],
+  historyKey: string,
+  historyMap: Map<string, T[]>
+): T {
+  if (items.length === 0) {
+    throw new Error('No items available for selection');
+  }
+
+  // If only one item, return it
+  if (items.length === 1) {
+    return items[0];
+  }
+
+  const history = historyMap.get(historyKey) || [];
+  
+  // Filter out recently used items if we have enough options
+  let availableItems = items;
+  if (items.length > MAX_HISTORY) {
+    availableItems = items.filter(item => !history.includes(item));
+    // If all items are in history (shouldn't happen), reset and use all
+    if (availableItems.length === 0) {
+      availableItems = items;
+      historyMap.set(historyKey, []);
+    }
+  }
+
+  // Use crypto.getRandomValues for better randomness
+  const randomIndex = Math.floor(getSecureRandom() * availableItems.length);
+  const selectedItem = availableItems[randomIndex];
+
+  // Update history
+  const newHistory = [selectedItem, ...history].slice(0, MAX_HISTORY);
+  historyMap.set(historyKey, newHistory);
+
+  return selectedItem;
+}
+
+/**
+ * Generate a cryptographically secure random number between 0 and 1
+ * Falls back to Math.random() if crypto is not available
+ */
+function getSecureRandom(): number {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return array[0] / (0xFFFFFFFF + 1);
+  }
+  // Fallback for environments without crypto
+  return Math.random();
+}
+
 /**
  * Get a series-specific meme based on seriesId
  * Each series has perfectly matched reaction GIFs
+ * Uses improved randomization to prevent repetition
  */
 export function getSeriesMeme(
   seriesId: string,
@@ -166,45 +228,58 @@ export function getSeriesMeme(
     throw new Error(`No ${action} memes found for ${series.name}`);
   }
 
-  const randomUrl = memeUrls[Math.floor(Math.random() * memeUrls.length)];
+  // Create unique history keys for this series and action
+  const memeHistoryKey = `${seriesId}-${action}-meme`;
+  const textHistoryKey = `${action}-text`;
+
+  // Get random meme and text with history tracking
+  const randomUrl = getRandomWithHistory(memeUrls, memeHistoryKey, recentMemes);
+  const randomText = action === "rate" 
+    ? getRandomRateText(textHistoryKey) 
+    : getRandomHateText(textHistoryKey);
+
   return {
     gif: randomUrl,
-    text: action === "rate" ? getRandomRateText() : getRandomHateText()
+    text: randomText
   };
 }
 
-// Helper functions for random texts
-function getRandomRateText(): string {
+// Helper functions for random texts with history tracking
+function getRandomRateText(historyKey: string): string {
   const texts = [
     "Your taste is LEGENDARY! 🔥",
     "A person of culture, I see! 👑",
     "Absolutely PERFECT choice! ⭐",
     "You've got ELITE taste! 💯",
-    "Chef's kiss! *muah* 😘",
     "BRILLIANT! You know cinema! 🎬",
-    "THIS IS GOLD! 🏆",
     "Standing ovation! 👏👏👏",
     "You have IMPECCABLE taste! 😎",
-    "FINALLY someone with taste! 🙌"
+    "FINALLY someone with taste! 🙌",
+    "This is CHEF'S KISS! 👨‍🍳💋",
+    "You've unlocked TASTE level 100! 🎯",
+    "RESPECT! You get it! 🙏",
+    "Exquisite choice, my friend! 🥂"
   ];
-  return texts[Math.floor(Math.random() * texts.length)];
+  return getRandomWithHistory(texts, historyKey, recentTexts);
 }
 
-function getRandomHateText(): string {
+function getRandomHateText(historyKey: string): string {
   const texts = [
     "Why would you do this? 😭",
     "Your taste is questionable... 💀",
     "I'm judging you right now... 👀",
-    "This ain't it, chief! 🚫",
     "We need to talk about this... 😤",
     "Big yikes energy here! 😬",
-    "Are we watching the same movie?! 🤔",
+    "Are we watching the same show?! 🤔",
     "Nope. Just nope. 🙅",
     "Excuse me, WHAT?! 🤯",
     "My disappointment is immeasurable! 📉",
-    "This is a crime against cinema! ⚖️",
+    "This is a crime against TV! ⚖️",
     "You need help... professional help! 🆘",
-    "I have no words... just WHY?! 🙃"
+    "I have no words... just WHY?! 🙃",
+    "The audacity! THE AUDACITY! 😱",
+    "Houston, we have a TASTE problem! 🚀",
+    "This ain't it, chief... 🙅‍♂️"
   ];
-  return texts[Math.floor(Math.random() * texts.length)];
+  return getRandomWithHistory(texts, historyKey, recentTexts);
 }

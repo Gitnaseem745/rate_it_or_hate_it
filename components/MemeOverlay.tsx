@@ -30,7 +30,7 @@ export default function MemeOverlay({ show, meme }: MemeOverlayProps) {
             <img
               src={meme.gif}
               alt="Reaction meme"
-              className="w-full h-auto rounded-2xl shadow-2xl mb-6"
+              className="w-full h-auto rounded-2xl shadow-2xl mb-6 max-h-[400px] object-contain mx-auto"
             />
             <motion.p
               initial={{ opacity: 0, y: 20 }}
