@@ -2,7 +2,7 @@
 
 A fun and interactive TV series voting app built with Next.js, MongoDB, and Framer Motion. Vote on 12 curated series and see hilarious series-specific GIF reactions!
 
-🌐 **[Live Demo](https://your-domain.vercel.app)** | 🐙 **[GitHub](https://github.com/Gitnaseem745/rate_it_or_hate_it)**
+🌐 **[Live Demo](https://rate-it-or-hate-it.vercel.app)** | 🐙 **[GitHub](https://github.com/Gitnaseem745/rate_it_or_hate_it)**
 
 ## ✨ Features
 
